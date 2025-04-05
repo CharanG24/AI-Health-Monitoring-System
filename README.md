@@ -21,6 +21,8 @@ Initialize the database:
 python app.py
 ```
 <img width="1144" alt="image" src="https://github.com/user-attachments/assets/d1e0cd2e-4c78-4cca-9197-73e6c559dcd3" />
+
+
 <img width="619" alt="image" src="https://github.com/user-attachments/assets/d746cf6a-d001-4cde-8a43-d7a4e47b4454" />
 
 
