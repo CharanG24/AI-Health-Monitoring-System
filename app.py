@@ -208,3 +208,7 @@ def get_patient_analysis(patient_id):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True) 
+
+from vercel_wsgi import make_lambda_handler
+
+handler = make_lambda_handler(app)
