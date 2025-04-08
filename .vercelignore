@@ -1,0 +1,7 @@
+.vscode/
+__pycache__/
+venv/
+instance/
+health_monitoring.db
+train_model.py
+ai_model.py 
