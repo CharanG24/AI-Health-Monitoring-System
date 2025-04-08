@@ -7,6 +7,8 @@ A Flask-based web application for monitoring patient vital signs and detecting a
 
 
 <img width="619" alt="image" src="https://github.com/user-attachments/assets/d746cf6a-d001-4cde-8a43-d7a4e47b4454" />
+
+
 ## Features
 
 - **Patient Management**: Add, view, and delete patient records.
