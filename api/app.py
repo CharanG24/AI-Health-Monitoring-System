@@ -1,4 +1,3 @@
-
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -135,13 +134,13 @@ def add_vitals(patient_id):
         db.session.commit()
 
         all_vitals = VitalSigns.query.all()
-        vitals_data = [{
+        vitals_data = [({
             'heart_rate': v.heart_rate,
             'blood_pressure_systolic': v.blood_pressure_systolic,
             'blood_pressure_diastolic': v.blood_pressure_diastolic,
             'temperature': v.temperature,
             'oxygen_saturation': v.oxygen_saturation
-        } for v in all_vitals]
+        }) for v in all_vitals]
         
         anomaly_detector.train(vitals_data)
         
@@ -207,11 +206,10 @@ def get_patient_analysis(patient_id):
         'analysis': analysis
     })
 
-
+# The following line allows the app to work with Vercel's serverless function
 from vercel_wsgi import make_lambda_handler
 handler = make_lambda_handler(app)
 
+# Ensuring the app only runs locally during development
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True) 
-
-
+    app.run(host='0.0.0.0', port=5000, debug=True)
