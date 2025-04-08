@@ -10,7 +10,7 @@ CORS(app)
 
 anomaly_detector = AnomalyDetector()
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///health_monitoring.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/health_monitoring.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -205,11 +205,11 @@ def get_patient_analysis(patient_id):
         'anomaly_score': anomaly_score,
         'analysis': analysis
     })
+from serverless_wsgi import handle_request  # Fixed import name
 
-# The following line allows the app to work with Vercel's serverless function
-from vercel_wsgi import make_lambda_handler
-handler = make_lambda_handler(app)
+def vercel_handler(event, context):
+    return handle_request(app, event, context)
 
-# Ensuring the app only runs locally during development
+# Keep the local run configuration
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
